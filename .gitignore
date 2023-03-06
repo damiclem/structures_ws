@@ -1,0 +1,14 @@
+# Exclude IDE settings
+.idea
+
+# Exclude python cache
+**/__pycache__
+
+# Exclude database
+db.sqlite3
+
+# Exclude migrations
+migrations
+
+# Exclude environmental variables
+.env
