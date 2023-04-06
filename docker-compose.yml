@@ -1,0 +1,12 @@
+version: '0.0.1'
+services:
+  ws:
+    build: .
+    image: structures-ws:0.0.1
+#    command: bash -lc "
+#        python manage.py makemigrations &&
+#        python manage.py migrate &&
+#        python manage.py runserver 0.0.0.0:8000
+#      "
+    ports:
+      - 8000:8000
