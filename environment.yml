@@ -47,3 +47,6 @@ dependencies:
       - markdown==3.4.1
       - numpy==1.24.2
       - pytz==2022.7.1
+      - pyyaml==6.0
+      - uritemplate==4.1.1
+prefix: /home/damiclem/anaconda3/envs/structures_ws

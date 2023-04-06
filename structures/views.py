@@ -1,19 +1,21 @@
 from structures.models import Structure
 from django.http import FileResponse
-from rest_framework import generics, exceptions
+from rest_framework import exceptions, views
 from .utils import iter_cif
 import server.settings as env
 import requests
-import time
 import gzip
 import os
 import re
 import io
 
 
-class StructureFile(generics.GenericAPIView):
+class StructureFileView(views.APIView):
 
     def get(self, request, source: str, identifier: str, model: int = None, chain: str = None):
+        """
+        Retrieve MMCIF file associated to source and identifier. Extract only given model and/or chain, when provided.
+        """
         # Try retrieving file from local path
         file_path_or_url = self.get_local_file_path(source, identifier)
         # Otherwise, try retrieving file from remote url

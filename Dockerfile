@@ -14,6 +14,8 @@ SHELL ["/bin/bash", "-lc"]
 RUN python manage.py makemigrations
 # Make migrations
 RUN python manage.py migrate
+# Fill database
+RUN python manage.py runscript update_files
 # Expose port 8000
 EXPOSE 8000
 # TODO Define command to be executed on activation
