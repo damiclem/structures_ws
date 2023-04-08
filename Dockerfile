@@ -14,8 +14,13 @@ SHELL ["/bin/bash", "-lc"]
 RUN python manage.py makemigrations
 # Make migrations
 RUN python manage.py migrate
-# Fill database
-RUN python manage.py runscript update_files
+# Create superuser (admin)
+ENV DJANGO_SUPERUSER_PASSWORD=admin
+ENV DJANGO_SUPERUSER_USERNAME=admin
+ENV DJANGO_SUPERUSER_EMAIL=damiano.orcid@mailinator.com
+RUN python manage.py createsuperuser --noinput
+## Fill database
+#RUN python manage.py runscript update_files
 # Expose port 8000
 EXPOSE 8000
 # TODO Define command to be executed on activation

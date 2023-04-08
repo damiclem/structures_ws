@@ -6,5 +6,3 @@
 db.sqlite3
 # Exclude migrations
 migrations
-# Exclude environmental variables
-server/.env

@@ -3,10 +3,27 @@ services:
   ws:
     build: .
     image: structures-ws:0.0.1
-#    command: bash -lc "
-#        python manage.py makemigrations &&
-#        python manage.py migrate &&
-#        python manage.py runserver 0.0.0.0:8000
-#      "
+    command: bash -lc "
+        python manage.py runscript update_files &&
+        python manage.py runserver 0.0.0.0:8000
+      "
+    volumes:
+      # - structures-db:/structures_ws/db.sqlite3
+      - alphafold-db:/mnt/db/af
+      - pdb-db:/mnt/db/mmCIF
     ports:
       - 8000:8000
+volumes:
+  # - structures-db:
+  alphafold-db:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/db/af'
+  pdb-db:
+    driver: local
+    driver_opts:
+      type: 'none'
+      o: 'bind'
+      device: '/mnt/db/mmCIF'
